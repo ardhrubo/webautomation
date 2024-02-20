@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "p-queue": "^8.0.1",
+    "puppeteer": "^22.1.0"
+  }
+}

@@ -1,0 +1,745 @@
+
+//Navbar Responsive
+
+let mobileMenuIcon = document.querySelector('.mobileMenuIcon');
+let mainMenuDiv = document.getElementById('navMenu');
+
+mobileMenuIcon.addEventListener('click', () =>{
+    mainMenuDiv.classList.toggle("mobile");
+});
+
+
+// Nav menu add and remove class
+let navMenus = document.querySelectorAll('.menuDiv ul li a');
+let currentLocation = location.href;
+//console.log(currentLocation);
+let navLength = navMenus.length;
+
+for(let i = 0; i<navLength; i++){
+    
+    if(navMenus[i].href === currentLocation){
+        navMenus[i].classList.add("activeMenu");
+    }
+    else{
+        navMenus[i].classList.remove("activeMenu");
+    }
+   
+}
+
+
+// for (let i = 0; i < navMenus.length; i++) {
+//     const navMenu = navMenus[i];
+//     navMenu.addEventListener('click', ()=>{
+//         removeClass();
+//             navMenu.classList.add('activeMenu');
+          
+            
+//     });
+
+   
+// }
+// function removeClass(){
+//     for (let i = 0; i < navMenus.length; i++) {
+//         const navMenu = navMenus[i];
+//         navMenu.classList.remove('activeMenu');}
+// }
+// Nav menu add and remove class end
+
+
+
+
+///Slider Our Valuable Clients end
+
+
+/// People say slider
+if(document.getElementById('clientReviewMainDIvMain')){
+const reviewData = data.data;
+// console.log(reviewData[0].details);
+let id = 0;
+let id1 = 1;
+let id2 = 2;
+let id3 = 3;
+let id4 =4;
+
+
+function loadReview (){
+     
+    const reviewDivMain = document.querySelector('.clientReviewMainDIv');
+    
+    reviewDivMain.innerHTML = `  <div class="clientReviewDiv1">
+    <h2 class="clientReviewDiv1H1 textCenter">Words From Our Appreciated Clients</h2>
+    <div class="clientReviewDiv1Grid allPadding">
+
+        <div class="arrowleft" onclick="slideRight()">
+            <img src="https://dev.efoli.com/beta/wp-content/themes/efoli/resources/icons/left arrow.png" alt="">
+        </div>
+
+        <div class="clientReviewDiv1GridCmn">
+        <div>
+        <img src="${reviewData[id].img}" alt="" class="clientReviewDiv1GridCmnImg" id="img1">
+    </div>
+    
+    
+    
+    <div>
+        <img src="${reviewData[id1].img}" alt="" class="clientReviewDiv1GridCmnImg" id="img2">
+    </div>
+    
+    
+    
+    <div>
+        <img src="${reviewData[id2].img}" alt="" class="clientReviewDiv1GridCmnImg" id="img3">
+       
+    </div>
+    
+    
+    
+    <div>
+        <img src="${reviewData[id3].img}" alt="" class="clientReviewDiv1GridCmnImg" id="img4">
+    </div>
+    
+    
+    
+    <div>
+        <img src="${reviewData[id4].img}" alt="" class="clientReviewDiv1GridCmnImg" id="img5">
+    </div>
+    
+        
+    </div>
+    
+    <div class="arrowRight" onclick="slideLeft()">
+        <img src="https://dev.efoli.com/beta/wp-content/themes/efoli/resources/icons/right arrow.png" alt="">
+    </div>
+</div>
+<div  class="flexColumn showReviewContent">
+    <p class="showReviewContentP1">${reviewData[id2].details} </p>
+    <img src="${reviewData[2].starImg}" alt="" class="starImg" id="img5">
+<p class="showReviewContentP2">${reviewData[id2].name}</p>
+<p lass="showReviewContentP3">${reviewData[id2].company}</p>
+</div>
+</div>
+
+`
+
+
+
+
+}
+
+loadReview();
+
+function slideRight (){
+    id = id + 1;
+    id1 = id1 + 1;
+    id2 = id2 + 1;
+    id3 = id3 + 1;
+    id4 = id4 + 1;
+   
+    if(reviewData.length-1<id4){
+        id4 = 0;
+    }
+    else if(reviewData.length-1<id3){
+        id3 = 0;
+    }
+
+    else if(reviewData.length-1<id2){
+        id2 = 0;
+    }
+    else if(reviewData.length-1<id1){
+        id1 = 0;
+    }
+    else if(reviewData.length-1<id){
+        id = 0;
+    }
+    //console.log(id,id1,id2,id3,id4);
+   
+   loadReview();
+
+   
+}
+
+function slideLeft (){
+    id = id - 1;
+    id1 = id1 - 1;
+    id2 = id2 - 1;
+    id3 = id3 - 1;
+    id4 = id4 - 1;
+   
+    if(reviewData.length-1<id4){
+        id4 = 0;
+    }
+    else if(reviewData.length-1<id3){
+        id3 = 0;
+    }
+
+    else if(reviewData.length-1<id2){
+        id2 = 0;
+    }
+    else if(reviewData.length-1<id1){
+        id1 = 0;
+    }
+    else if(reviewData.length-1<id){
+        id = 0;
+    }
+    if(id<0){
+        //console.log('id if ec');
+        id = reviewData.length - 1;
+        
+    }else if(id1<0){
+        id1 = reviewData.length - 1;
+    }else if(id2<0){
+        id2 = reviewData.length - 1;
+    }else if(id3<0){
+        id3 = reviewData.length - 1;
+    }else if(id4<0){
+        id4 = reviewData.length - 1 ;
+    }
+    //console.log(id,id1,id2,id3,id4);
+   
+    loadReview();
+
+   
+}
+
+
+}
+
+
+function sliderWithAutoPlay (id1,classAll,hasArrowBtn,isAutoPlay){
+    let divGrid= document.getElementById(id1);
+
+let divAll = divGrid.getElementsByClassName(classAll);
+//console.log(divAll);
+
+let rightArrow = document.getElementById('arrow-right');
+let leftArrow = document.getElementById('arrow-left');
+
+
+if(hasArrowBtn){
+    rightArrow.addEventListener('click', function(){
+    
+        divGrid.scrollLeft += 125;
+    });
+    
+    leftArrow.addEventListener('click', function(){
+        divGrid.scrollLeft -= 125;
+        
+    });
+}
+
+
+let maxScrollLeft = divGrid.scrollWidth - divGrid.clientWidth;
+
+if (isAutoPlay){
+    function autoPlay(){
+        if(divGrid.scrollLeft > (maxScrollLeft - 1)){
+            divGrid.scrollLeft -= maxScrollLeft;
+    
+        }
+        else{
+            divGrid.scrollLeft += 1;
+        }
+    }
+    function autoPlay(){
+        if(divGrid.scrollLeft > (maxScrollLeft - 1)){
+            divGrid.scrollLeft -= maxScrollLeft;
+    
+        }
+        else{
+            divGrid.scrollLeft += 1;
+        }
+    }
+    
+}
+
+let play = setInterval(autoPlay,50);
+
+
+for (i = 0; i <divAll.length; i++) {
+ 
+    divAll[i].addEventListener('mouseover',function(){
+         clearInterval(play);
+     });
+
+     divAll[i].addEventListener('mouseout',function(){
+        play = setInterval(autoPlay,50);
+    });
+         
+     
+    
+}
+}
+
+//ReadMore about Us page
+
+if(document.getElementById('efoliAboutMainDiv1Text2Div')){
+    readMoreLess('efoliAboutMainDiv1Text2Div','efoliAboutMainDiv1ImgWithTextDiv');
+}
+
+if(document.getElementById('service247TextDiv')){
+    readMoreLess('service247TextDivPSpan','service247TextDiv');
+}
+
+//ReadMore career page
+
+if(document.getElementById('lifeAtEfoliMainDiv1GridDiv1First')){
+    readMoreLess('lifeAtEfoliMainDiv1GridDiv1PSpan1','lifeAtEfoliMainDiv1GridDiv1First');
+}
+
+if(document.getElementById('lifeAtEfoliMainDiv1GridDiv1Second')){
+    readMoreLess('lifeAtEfoliMainDiv1GridDiv1PSpan2','lifeAtEfoliMainDiv1GridDiv1Second');
+}
+if(document.getElementById('whyChooseUsMainGridDiv1')){
+    readMoreLess('whyChooseUsMainGridDiv1PSpan','whyChooseUsMainGridDiv1');
+}
+
+
+// ReadMore function 
+function readMoreLess(hidePart,ReadMoreDiv){
+    let readMoreDivMain = document.getElementById(ReadMoreDiv);
+    let nextPara = document.getElementById(hidePart);
+    let readMore = readMoreDivMain.querySelector('.ReadMore');
+    let readLess = readMoreDivMain.querySelector('.ReadLess');
+   
+    //console.log(readMore);
+
+    readMore.addEventListener('click',(e)=>{
+        e.preventDefault;
+        nextPara.classList.toggle('showP');
+        readMore.style.display = 'none';
+    });
+    readLess.addEventListener('click',(e)=>{
+        e.preventDefault;
+        nextPara.classList.toggle('showP');
+        readMore.style.display = 'inline-block';
+    });
+}
+
+//blog page category menu
+if(document.getElementById('discoverMoreMainGridDiv1CatThreeDotMain')){
+let dotDivMain = document.getElementById('discoverMoreMainGridDiv1CatThreeDotMain');
+let  dotDivMainChild = document.getElementById('discoverMoreMainGridDiv1CatThreeDotMainDiv1');
+let  dotDivMainChildMultiSign = document.getElementById('discoverMoreMainGridDiv1CatThreeDotMainDiv1MultiSign');
+
+
+
+dotDivMain.addEventListener('click',()=>{
+    dotDivMainChild.style.display = "block";
+});
+
+dotDivMainChildMultiSign.addEventListener('click',(e)=>{
+    dotDivMainChild.style.display = "none";
+    e.stopPropagation();
+    
+});
+
+}
+
+
+// for modal open CLose meet team section
+
+modalOpenClose(undefined,'meetOurTeamDiv1GridDivCmnBtn','singlePersonModal','closeBtn');
+
+
+function modalOpenClose(parentDiv,clickBtn,modalContainer,closebtn){
+//let parentDivGet = document.getElementsByClassName(parentDiv);
+let clickBtnGet =document.getElementsByClassName(clickBtn);
+let modalContainerGet =document.getElementsByClassName(modalContainer);
+let closeBtnGet = document.getElementsByClassName(closebtn);
+
+
+for (let i = 0; i < clickBtnGet.length; i++) {
+    clickBtnGet[i].addEventListener('click',()=>{
+       modalContainerGet[i].style.display = 'block';
+    });
+ 
+}
+
+for (let i2 = 0; i2 < closeBtnGet.length; i2++) {
+    closeBtnGet[i2].addEventListener('click',()=>{
+        // modalContainerGet[i2].style.display = 'none';
+        //console.log('click');
+        let prt = closeBtnGet[i2].parentElement.parentElement;
+        prt.style.display = 'none';
+        //console.log(prt);
+    });
+
+    window.onclick = function(event) {
+        
+        if(event.target.className === "singlePersonModal" ){
+            event.target.style.display = 'none';
+        }else if(event.target.className === "videoModalContent" ){
+            event.target.style.display = 'none';
+        }
+       
+         
+       
+      }
+}
+
+}
+// let parentMeetTeamDiv = document.getElementsByClassName('meetOurTeamDiv1GridDivCmn');
+// let visitProfileBtn =document.getElementsByClassName('meetOurTeamDiv1GridDivCmnBtn');
+// let mainModal =document.getElementsByClassName('singlePersonModal');
+// let closeBtn = document.getElementsByClassName('closeBtn');
+
+
+// for (let i = 0; i < visitProfileBtn.length; i++) {
+//     visitProfileBtn[i].addEventListener('click',()=>{
+//        mainModal[i].style.display = 'block';
+//     });
+ 
+// }
+
+// for (let i2 = 0; i2 < closeBtn.length; i2++) {
+//     closeBtn[i2].addEventListener('click',()=>{
+//         mainModal[i2].style.display = 'none';
+//     });
+
+//     window.onclick = function(event) {
+        
+//         if(event.target.className === "singlePersonModal" ){
+//             event.target.style.display = 'none';
+//         }
+       
+         
+       
+//       }
+// }
+
+
+//modal open for video resouces
+
+
+let allVideoDIv = document.getElementsByClassName('videoResouceDiv2VideoCmn');
+let videoModalContainer = document.getElementById('videoModalContainer');
+let videoUrl = document.getElementById('videoUrl');
+let i;
+for (let i = 0; i < allVideoDIv.length; i++) {
+    //console.log(allVideoDIv[i]);
+    allVideoDIv[i].addEventListener('click',()=>{
+        //console.log(i);
+
+        if(i === 0){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/XvA0WlcCLco" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+
+        } else if(i === 1){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/ZosjrjjYLnw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 2){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/T1gRW7OAA0g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 3){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/P74f_IAZ37g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 4){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/Us9Lgc0s47Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 5){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/eCGhjRKXNSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 6){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/HxhFgkW9a7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 7){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/k3StqEXxEQo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 8){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/jJhluFs47bA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 9){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/xDjil23Ck2o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 10){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/yoAH-9KuV-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 11){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/odY9g7GGZvQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 12){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/QifO1LxdDbY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 13){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/EVOLs_1jZIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 14){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/p7g34zBctls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 15){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/7DPy50PUxcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        
+        else if(i === 16){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/lCuDOrJuzVM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 17){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/QkLpGZDUdN4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        else if(i === 18){
+            videoModalContainer.style.display = 'block';
+            videoUrl.innerHTML = `
+            
+            <iframe width="100%"  src="https://www.youtube.com/embed/2KfoFgH61EM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            `;
+        }
+        
+      
+
+      
+    });
+    
+}
+
+
+
+// function for dot click scroll
+
+
+function dotClickScroll(idCon){
+    
+    let mainDivGrid = document.getElementById(idCon);
+    let dotAllDiv = document.querySelectorAll('.dotClCmn');
+    let maxWidth = mainDivGrid.scrollWidth - mainDivGrid.clientWidth;
+    for (let i = 0; i < dotAllDiv.length; i++) {
+        const element = dotAllDiv[i];
+    
+        element.addEventListener('click',()=>{
+            // removeClass('dotClCmn','menuAc');
+            // element.classList.add('menuAc');
+    
+            if(i == 0){
+                //console.log('1');
+                mainDivGrid.scrollLeft = 0;
+                 removeClass('dotClCmn','dotAct');
+                 element.classList.add('dotAct');
+            }
+    
+            else if(i == 1){
+                //console.log('2');
+                mainDivGrid.scrollLeft = maxWidth/2;
+                removeClass('dotClCmn','dotAct');
+                element.classList.add('dotAct');
+            }
+    
+            else if(i == 2){
+                //console.log('3');
+                mainDivGrid.scrollLeft = maxWidth-1;
+                removeClass('dotClCmn','dotAct');
+                element.classList.add('dotAct');
+            }
+            
+
+            mainDivGrid.scrollIntoView({
+                behavior: "smooth"
+              });
+        });
+        
+    }
+    }
+
+
+    // funtion for remove class with for loop 
+
+
+    function removeClass(allDivs,addNameClass){
+        let allDivsAll = document.getElementsByClassName(allDivs);
+        for (let i = 0; i < allDivsAll.length; i++) {
+            const allDiv = allDivsAll[i];
+            allDiv.classList.remove(addNameClass);}
+    }
+
+
+
+//back button function
+
+const backToprevius = () =>{
+    window.history.back();
+}
+
+
+//slider 
+    const $jq = jQuery.noConflict();
+    $jq(document).ready(function(){
+        $jq('.feartureBlogDiv1Flex').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            dots:true,
+            responsive: [
+                {
+                  breakpoint: 980,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                  },
+                  
+                },
+                {
+                    breakpoint: 370,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                }
+            ]
+          });
+
+
+          $jq('.videoResouceDiv2').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots:true
+          });
+      });
+
+      
+
+//service page 
+
+//navbar toggle
+if(document.getElementById('home')){
+const bars = document.getElementById('bars');
+const serviceLinkDiv = document.getElementById('serviceLinkDiv');
+
+bars.addEventListener('click',()=>{
+    serviceLinkDiv.classList.toggle('show');
+});
+
+
+
+$jq(document).ready(function(){
+    $jq('.carousel-inner').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+       
+      });
+  });
+
+  // scroll down to sticky nav
+  const serviceNav = document.getElementById('serviceNav');
+  const scrollTotopbutton = document.getElementById('scrollTotopbutton');
+  let scrollBefore = 0;
+  window.addEventListener('scroll',()=>{
+    if(window.pageYOffset >= 90){
+        serviceNav.classList.add('navbar-fixed');
+        scrollTotopbutton.classList.add('show');
+        
+        
+    }else if(window.pageYOffset <= 190){
+        serviceNav.classList.remove('navbar-fixed');
+        scrollTotopbutton.classList.remove('show');
+       
+    }
+
+    
+    const scrolled = window.scrollY;
+
+    if(scrollBefore > scrolled){
+        
+        scrollBefore = scrolled;
+        serviceNav.classList.remove('topServicePage');
+    }else{
+        scrollBefore = scrolled;
+     
+        serviceNav.classList.add('topServicePage');
+    }
+  });
+
+  scrollTotopbutton.addEventListener('click',()=>{
+    document.getElementById('home').scrollIntoView();
+  });
+
+
+
+const getSericePath = window.location.pathname.includes('service'); 
+
+if(getSericePath || window.location.search.includes('?page_id=88')){
+    document.getElementsByClassName('navmainDiv')[0].style.display = 'none';
+}
+
+ 
+}
+
+
+const dateNow = new Date();
+document.getElementById('getYear').innerText = dateNow.getFullYear();
