@@ -56,7 +56,7 @@ async function getLinks(link){
     const linkedinLink = await page.evaluate(()=> document.querySelector('a[href*=linkedin]')?.href);
     const careerLink = await page.evaluate(()=> document.querySelector('a[href*=career]')?.href);
     
-    await page.$$eval('a[href*=career]',(a)=>a.map(a=>a.href))
+    // await page.$$eval('a[href*=career]',(a)=>a.map(a=>a.href))
 
     console.log({link,title,hostname,facebookLInk,twitterLink,linkedinLink,careerLink})
 
