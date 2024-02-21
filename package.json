@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "fs": "^0.0.1-security",
     "p-queue": "^8.0.1",
     "puppeteer": "^22.1.0"
   }

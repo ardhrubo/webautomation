@@ -80,3 +80,6 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
+
+# Ignore all .tmp files
+*.tmp
